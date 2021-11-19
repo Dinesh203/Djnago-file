@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+{% if user_id %}
+ <table class="table" border="1">
+  <thead>
+    <tr>
+      <th scope="col">Id</th><br>
+      <th scope="col">Name</th><br>
+      <th scope="col">Mail ID</th><br>
+      <th scope="col">Discription</th><br>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+        <th scope="row">{{user_id.id}}</th>
+        <td>{{user_id.name}}</td>
+        <td>{{user_id.email}}</td>
+        <td>{{user_id.destination}}</td>
+        
+        </tr>
+        <a href="{% url 'updateprofile' %}">Update profile</a><br>
+    
+  </tbody>
+</table>
+
+    {% else %}
+    <h1>data not found</h1>
+{% endif %} <br>
+
+<input type="button" value="Back to home">
+    <a href="{% url 'homepage' %}">Back to Home</a>
+</body>
+
+</html>
+
+
+<table class="table table-success table-striped">
+  ...
+</table>
+
+{% endblock content %}
+
+
+
+
+{% comment %} <a href="/form">Click here to Sign Up</a> {% endcomment %}

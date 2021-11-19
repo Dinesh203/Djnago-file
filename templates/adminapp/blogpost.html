@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-center">This is my block post home page</h2>
+<br>
+{#<a href="{% url 'homepage' %}">Go to home</a> <br> <br>#}
+{#    <a href="{% url 'addblog' %}">Add Blog </a> <br> <br>#}
+    <a href="{% url 'blogpost' %}">My Blog </a>
+
+{% for p in Post %}
+<br>  <br> {{p.publish}}
+    <div class="card" style="width: 18rem;">
+        <img src="{{p.image.url}}" style="height:200px;width:250px;" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{p.title}}</h5>
+            <p class="card-text">{{p.discription}}</p>
+            <a href="#" class="btn btn-primary">view</a>
+            <a href="{% url 'deleteblog' p.id %}">Delete</a><br>
+            {{p.publish}}
+        </div>
+    </div>
+
+
+{% endfor %}
+
+{% endblock content %}

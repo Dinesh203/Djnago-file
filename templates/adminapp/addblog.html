@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Add your Blog here</h1>
+<br>
+<form action="#" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+    {{addblog.as_table}}
+    <tr>
+    <td><input type="submit" name="submit" value="Submit"/></td>
+    </tr>
+    </table>
+
+</form>
+
+{% endblock content %}
