@@ -24,22 +24,6 @@ def signup(request):
     return render(request, "userapp/signup_login.html", {'form': form})
 
 
-# def signup(request):
-#     if request.method == "POST":
-#         name1 = request.POST['name']
-#         email1 = request.POST['email']
-#         pass1 = request.POST['password']
-#
-#         data = SignUp(name=name1, email=email1, password=pass1)
-#         data.save()
-#
-#         msg = 'Created User successfully'
-#         datavar = SignUp.objects.all()
-#         return render(request,'sighup_login.html',{'message':msg})
-#
-#     else:
-#         return render(request, 'test.html')
-
 def login(request):
     if request.method == 'POST':
         email1 = request.POST['email']
@@ -58,22 +42,22 @@ def login(request):
 
 
 def getuser(request):
-    user_email_id = request.session['email']
-    print(user_email_id)
-    obj = SignUp.objects.filter(email=user_email_id)
-    # name = obj.name
-    print(obj)
-    if user_email_id:
-        # userblog = Post.objects.filter(user_id=user)
-        # data = Post.objects.get(user=name)
-        return render(request, 'userapp/userprofile.html', {'user_id': data})
+    email_id = request.session['email']
+    obj = SignUp.objects.filter(email=email_id)
+    for data in obj:
+        name = data.name
+        if name:
+            userblog = Post.objects.filter(user_id=data)
+            content = {'user_id': userblog,
+                       'name': data.name}
+            return render(request, 'userapp/userprofile.html', content)
+        # return None
+        else:
+            messages.WARNING("user id not match")
+            return render(request, "userapp/userprofile.html")
 
-    else:
-        messages.WARNING("user id not match")
-        return render(request, "userapp/userprofile.html")
-
-        # email1 = SignUp.objects.get(pk=object_id)
-        # return redirect("home", {'email':email})
+    # email1 = SignUp.objects.get(pk=object_id)
+    # return redirect("home", {'email':email})
 
 # def update(request):
 #     if request.method=="POST":
