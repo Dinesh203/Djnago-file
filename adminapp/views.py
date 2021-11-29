@@ -6,6 +6,7 @@ from .forms import PostForm
 
 # Create your views here.
 
+#New Data
 
 def blogpost(request):
     post = Post.objects.all()
